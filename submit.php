@@ -1,11 +1,6 @@
 <?php
 
 
-#print("hello");
-
-#var_dump($_POST);
-#print(isset($_POST["file"]));
-
 if (isset($_POST["file"])) {
 	#print("file specified");
 	print($_POST["file"]);
@@ -22,13 +17,20 @@ $myfile = fopen("text/" . $filename, "w");
 
 $title = $_POST["title"] . "\n";
 
-fwrite($myfile, $title);
+
+//fwrite($myfile, $title);
 
 $content = $_POST["content"];
 
 print("writing to file " . $filename);
 
-fwrite($myfile, $content);
+$file_data = array(
+	"title" => $title,
+	"content" => $content
+);
+//fwrite($myfile, $content);
+
+fwrite($myfile, json_encode($file_data));
 
 
 ?>
